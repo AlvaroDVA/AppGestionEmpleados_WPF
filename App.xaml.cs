@@ -69,11 +69,11 @@ public partial class App : Application
         }
         catch (CultureNotFoundException)
         {
-            CultureInfo defaultCulture = new CultureInfo("en_EN");
+            CultureInfo defaultCulture = new CultureInfo("en-EN");
             Thread.CurrentThread.CurrentCulture = defaultCulture;
             Thread.CurrentThread.CurrentUICulture = defaultCulture;
 
-            Settings.Default.Lenguage = "en_EN";
+            Settings.Default.Lenguage = "en-EN";
             Settings.Default.Save();
 
         }
