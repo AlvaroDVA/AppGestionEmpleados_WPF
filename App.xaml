@@ -1,0 +1,36 @@
+﻿<Application x:Class="GestionEmpleados.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GestionEmpleados"
+             xmlns:vm="clr-namespace:GestionEmpleados.ViewModels"
+             xmlns:v="clr-namespace:GestionEmpleados.Views"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type vm:MainViewModel}">
+                <local:MainWindow/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+                <v:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:EmployeeViewModel}">
+                <v:EmployeeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DepartmentViewModel}">
+                <v:DepartmentView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:GraphViewModel}">
+                <v:GraphView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                <v:SettingsView/>
+            </DataTemplate>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Dark/DarkTheme.xaml" />
+                <ResourceDictionary Source="Themes/Light/LightTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+       
+    </Application.Resources>
+</Application>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="GestionEmpleados.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:GestionEmpleados.Properties"
+        xmlns:con="clr-namespace:GestionEmpleados.Controls"
+        xmlns:vm="clr-namespace:GestionEmpleados.ViewModels"
+        xmlns:local="clr-namespace:GestionEmpleados"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1200">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <SolidColorBrush Color="{StaticResource AppBackground}"/>
+        </Grid.Background>
+        <Grid>
+            <Grid.Background>
+                <SolidColorBrush Color="{StaticResource MenuBackground}"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <con:MenuRadioButton ClickCommand="{Binding ActivateHomeViewCommand}" Texto="{x:Static res:Resources.HomeMenu}" Checked="True" Group="MenuGroup" SvgData="M21.4498 10.275L11.9998 3.1875L2.5498 10.275L2.9998 11.625H3.7498V20.25H20.2498V11.625H20.9998L21.4498 10.275ZM5.2498 18.75V10.125L11.9998 5.0625L18.7498 10.125V18.75H14.9999V14.3333L14.2499 13.5833H9.74988L8.99988 14.3333V18.75H5.2498ZM10.4999 18.75H13.4999V15.0833H10.4999V18.75Z"></con:MenuRadioButton>
+                <con:MenuRadioButton ClickCommand="{Binding ActivateEmployeeViewCommand}" Texto="{x:Static res:Resources.EmployeeMenu}" Group="MenuGroup" SvgData="M17.56,14.11a7.48,7.48,0,0,1-1.77-.82,9.46,9.46,0,0,0,1.64-2.68,1.25,1.25,0,0,0,.46-.45c.73-1.29.9-2.32.52-3.14a1.89,1.89,0,0,0-.51-.66,9.75,9.75,0,0,0-.29-2.18A5.5,5.5,0,0,0,12.08.43,5.5,5.5,0,0,0,6.56,4.18a9.64,9.64,0,0,0-.29,2.17A1.9,1.9,0,0,0,5.76,7c-.38.82-.21,1.85.52,3.15a1.24,1.24,0,0,0,.46.44,9.46,9.46,0,0,0,1.64,2.68,7.47,7.47,0,0,1-1.77.82c-2.36.75-5.53,2.33-5.77,7.42a1,1,0,0,0,.79,1,54.3,54.3,0,0,0,10.46.94,54.29,54.29,0,0,0,10.46-.94,1,1,0,0,0,.79-1C23.09,16.43,19.92,14.85,17.56,14.11ZM7.91,9A2.14,2.14,0,0,1,7.57,7.9a1,1,0,0,0,.71-1,8.2,8.2,0,0,1,.21-2.18,3.45,3.45,0,0,1,3.59-2.28,3.45,3.45,0,0,1,3.59,2.26,8.23,8.23,0,0,1,.22,2.19,1,1,0,0,0,.71,1A2.15,2.15,0,0,1,16.25,9a1.26,1.26,0,0,0-.63.72c-.21.72-1.68,3.54-3.54,3.54S8.75,10.42,8.54,9.7A1.25,1.25,0,0,0,7.91,9Zm4.17,12.5a56.68,56.68,0,0,1-9.17-.73c.43-3.09,2.31-4.11,4.3-4.74A9.22,9.22,0,0,0,10,14.63a4,4,0,0,0,4.25,0A9.22,9.22,0,0,0,17,16c2,.63,3.87,1.65,4.3,4.74A56.67,56.67,0,0,1,12.08,21.49Z"></con:MenuRadioButton>
+                <con:MenuRadioButton ClickCommand="{Binding ActivateDepartmentViewCommand}" Texto="{x:Static res:Resources.DepartmentMenu}" Group="MenuGroup" SvgData="M7.5 4.5C6.67157 4.5 6 5.17157 6 6V15.4013C6.44126 15.1461 6.95357 15 7.5 15H18V4.5H7.5ZM18 16.5H7.5C6.67157 16.5 6 17.1716 6 18C6 18.8284 6.67157 19.5 7.5 19.5H18V16.5ZM4.5 18L4.5 6C4.5 4.34315 5.84315 3 7.5 3H18.75L19.5 3.75V21H7.5C5.84315 21 4.5 19.6569 4.5 18Z"></con:MenuRadioButton>
+                <con:MenuRadioButton ClickCommand="{Binding ActivateGraphViewCommand}" Texto="{x:Static res:Resources.GraphMenu}" Group="MenuGroup" SvgData="M17.8321 9.5547C18.1384 9.09517 18.0142 8.4743 17.5547 8.16795C17.0952 7.8616 16.4743 7.98577 16.168 8.4453L13.3925 12.6085L10.0529 10.3542C9.421 9.92768 8.55941 10.1339 8.18917 10.8004L6.12584 14.5144C5.85763 14.9971 6.03157 15.6059 6.51436 15.8742C6.99714 16.1424 7.60594 15.9684 7.87416 15.4856L9.56672 12.439L12.8571 14.66C13.4546 15.0634 14.2662 14.9035 14.6661 14.3036L17.8321 9.5547Z M7 2C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2H7ZM4 7C4 5.34315 5.34315 4 7 4H17C18.6569 4 20 5.34315 20 7V17C20 18.6569 18.6569 20 17 20H7C5.34315 20 4 18.6569 4 17V7Z"></con:MenuRadioButton>
+                </StackPanel>
+
+            <StackPanel Grid.Row="1" >
+                <con:MenuRadioButton ClickCommand="{Binding ActivateSettingsViewCommand}" Texto="{x:Static res:Resources.SettingsMenu}" Group="MenuGroup" SvgData="M12 4a1 1 0 0 0-1 1c0 1.692-2.046 2.54-3.243 1.343a1 1 0 1 0-1.414 1.414C7.54 8.954 6.693 11 5 11a1 1 0 1 0 0 2c1.692 0 2.54 2.046 1.343 3.243a1 1 0 0 0 1.414 1.414C8.954 16.46 11 17.307 11 19a1 1 0 1 0 2 0c0-1.692 2.046-2.54 3.243-1.343a1 1 0 1 0 1.414-1.414C16.46 15.046 17.307 13 19 13a1 1 0 1 0 0-2c-1.692 0-2.54-2.046-1.343-3.243a1 1 0 0 0-1.414-1.414C15.046 7.54 13 6.693 13 5a1 1 0 0 0-1-1zm-2.992.777a3 3 0 0 1 5.984 0 3 3 0 0 1 4.23 4.231 3 3 0 0 1 .001 5.984 3 3 0 0 1-4.231 4.23 3 3 0 0 1-5.984 0 3 3 0 0 1-4.231-4.23 3 3 0 0 1 0-5.984 3 3 0 0 1 4.231-4.231z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-2.828-.828a4 4 0 1 1 5.656 5.656 4 4 0 0 1-5.656-5.656z"></con:MenuRadioButton>
+                <con:MenuRadioButton ClickCommand="{Binding CloseCommandCommand}" Checked="{Binding Checked}" Texto="{x:Static res:Resources.ExitMenu}" Group="Exit" SvgData="M7.707,8.707,5.414,11H17a1,1,0,0,1,0,2H5.414l2.293,2.293a1,1,0,1,1-1.414,1.414l-4-4a1,1,0,0,1,0-1.414l4-4A1,1,0,1,1,7.707,8.707ZM21,1H13a1,1,0,0,0,0,2h7V21H13a1,1,0,0,0,0,2h8a1,1,0,0,0,1-1V2A1,1,0,0,0,21,1Z"></con:MenuRadioButton>
+            </StackPanel>
+            
+        </Grid>
+        <ContentControl Content="{Binding ActiveView}" Grid.Column="1" />
+    </Grid>
+</Window>

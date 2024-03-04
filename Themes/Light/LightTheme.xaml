@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sty="clr-namespace:GestionEmpleados.Properties"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="BackgroundColor">#ffffff</Color>
+    <Color x:Key="PrimaryColor">#278CD9</Color>
+    <Color x:Key="SecondaryColor">#003B7D</Color>
+    <Color x:Key="AppBackground">#b3b2b1</Color>
+    <Color x:Key="MenuBackground">#e8e8e8</Color>
+    <Color x:Key="SelectedColor">#ffffff</Color>
+
+</ResourceDictionary>

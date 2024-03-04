@@ -1,0 +1,202 @@
+﻿<UserControl x:Class="GestionEmpleados.Views.DepartmentView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GestionEmpleados.Views"
+      xmlns:vm="clr-namespace:GestionEmpleados.ViewModels"
+      xmlns:res="clr-namespace:GestionEmpleados.Properties"
+      mc:Ignorable="d" 
+      d:DataContext="{d:DesignInstance vm:DepartmentViewModel}"       
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource SecondaryColor}"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource SecondaryColor}"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="0,10,0,10 "/>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource SecondaryColor}"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource BackgroundColor}"/>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{StaticResource PrimaryColor}"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Foreground">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{StaticResource SelectedColor}"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource SecondaryColor}"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource SelectedColor}"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource BackgroundColor}"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.Background>
+            <SolidColorBrush Color="{StaticResource BackgroundColor}"/>
+        </Grid.Background>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Department Grid / New - Edit Department -->
+        <Grid Grid.Column="0" Margin="5">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            
+            
+            <!-- All Departments Grid -->
+            <Grid Grid.Row="0" Margin="5">
+                <DataGrid ItemsSource="{Binding DepartmentList}" HeadersVisibility="Column" AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="FullRow" SelectionChanged="DataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static res:Resources.DepartmentText}" Binding="{Binding NombreDepartamento}" Width="80*"/>
+                        <DataGridTextColumn Header="{x:Static res:Resources.EmployeeNumber}" Binding="{Binding CountEmployees}" Width="20*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            
+            <!-- New / Edit Department -->
+            <Grid Grid.Row="2" Margin="5">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="15"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Label + TextBox -->
+                <Label Grid.Row="0"  Content="{x:Static res:Resources.DepartmentText}" />
+                <TextBox Grid.Row="1" x:Name="NewDepartment" Text="{Binding DepartmentName}"/>
+                
+                <!-- Action Buttons -->
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="NewDepartmentButton" Grid.Column="0" Content="{x:Static res:Resources.NewButton}" Command="{Binding NewDeparmentCommand}" Margin="3" IsEnabled="{Binding NewButtonEnable}"/>
+                    <Button x:Name="UpdateDepartmenteeButton" Grid.Column="1" Content="{x:Static res:Resources.UpdateButton}" Command="{Binding UpdateDeparmentCommand}" Margin="3" IsEnabled="{ Binding UpdateButtonEnable}"/>
+                    <Button x:Name="ClearDepartmentButton" Grid.Column="2" Content="{x:Static res:Resources.ClearButton}" Command="{Binding ClearDeparmentCommand}" Margin="3" IsEnabled="True"/>
+                    <Button x:Name="DeleteDepartmentButton" Grid.Column="3" Content="{x:Static res:Resources.DeleteButton}" Command="{Binding DeleteDeparmentCommand}" Margin="3" IsEnabled="{Binding DeleteButtonEnable}"/>
+                </Grid>
+            </Grid>
+            
+        </Grid>
+        
+        <!-- Department Employees Grid / No Department Employees  -->
+        <Grid Grid.Column="3" Margin="5">
+            
+            <!-- Department Emplyees Grid -->
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="7*" />
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+                
+                <DataGrid Grid.Row="0" ItemsSource="{Binding EmployeesInDepartment}" HeadersVisibility="Column" Margin="10" AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="FullRow" SelectionChanged="EmployeeInDepartment_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static res:Resources.NameText}" Binding="{Binding Nombre}" Width="40*"/>
+                        <DataGridTextColumn Header="{x:Static res:Resources.EmailText}" Binding="{Binding Email}" Width="40*"/>
+                        <DataGridTextColumn Header="{x:Static res:Resources.WorkText}" Binding="{Binding Puesto}" Width="20*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="1" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="20*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="1" x:Name="RemoveFromDepartmentButton" Grid.Column="3" Content="{x:Static res:Resources.DeleteButton}" Command="{Binding RemoveEmployeeFromDepartmentCommand}" Margin="3" IsEnabled="{Binding RemoveFromDeparment}"/>
+                </Grid>
+
+                <DataGrid Grid.Row="3" ItemsSource="{Binding EmployeesNoDepartment}" HeadersVisibility="Column" Margin="10" AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="FullRow" SelectionChanged="EmployeeOutDepartment_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static res:Resources.NameText}" Binding="{Binding Nombre}" Width="40*"/>
+                        <DataGridTextColumn Header="{x:Static res:Resources.EmailText}" Binding="{Binding Email}" Width="40*"/>
+                        <DataGridTextColumn Header="{x:Static res:Resources.WorkText}" Binding="{Binding Puesto}" Width="20*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="20*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="1" x:Name="AddToDepartmentButton" Grid.Column="3" Content="{x:Static res:Resources.AddButon}" Command="{Binding AddEmployeeToDepartmentCommand}" Margin="3" IsEnabled="{Binding AddToDeparment}"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
